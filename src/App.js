@@ -1,5 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
+// import About from './components/About';
+import Navbar from './components/Navbar';
+import TextForm from './components/TextForm';
 // let name =<i>Shraddha</i>
 function App() {
   // return (
@@ -36,7 +39,7 @@ function App() {
   // );
   return(
  <>
- <nav className="navbar navbar-expand-lg bg-light">
+ {/* <nav className="navbar navbar-expand-lg bg-light">
   <div className="container-fluid">
     <a className="navbar-brand" href="/">TextUtils</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,9 +60,13 @@ function App() {
       </form>
     </div>
   </div>
-</nav>
+</nav> */}
+<Navbar title="TextUtils222" aboutText ="About Text-Utils"/> 
+<div className="container my-3"><TextForm heading="Enter the text to analyze below"/></div>
+{/* <About/> */}
  </>
   );
 }
 // if you're using jsx in react you can return only one element here it is (div)app or use jsx fragment <>....</>
 export default App;
+// props are read only
