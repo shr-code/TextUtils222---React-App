@@ -1,10 +1,16 @@
 // import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react'
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Link
+} from "react-router-dom";
 
 // let name =<i>Shraddha</i>
 function App() {
@@ -42,12 +48,11 @@ function App() {
   // );
   const [mode, setMode] = useState('light')
   const toggleMode = () => {
-    if (mode === 'light') 
-    { 
-      setMode('dark') 
+    if (mode === 'light') {
+      setMode('dark')
       document.body.style.backgroundColor = '#042743'
-      showAlert("Dark mode has been enabled","success")
-      document.title="TextUtils222 - Dark Mode"
+      showAlert("Dark mode has been enabled", "success")
+      document.title = "TextUtils222 - Dark Mode"
       // setInterval(() => {
       //   document.title="TextUtils222 is Amazing"
       // }, 2000);
@@ -55,22 +60,23 @@ function App() {
       //   document.title="Install now!"
       // }, 1500); //for blinking effect in the document title
     }
-    else { setMode('light') 
-    document.body.style.backgroundColor = 'white'
-    showAlert("Light mode has been enabled","success")
-    document.title="TextUtils222 - Light Mode"
+    else {
+      setMode('light')
+      document.body.style.backgroundColor = 'white'
+      showAlert("Light mode has been enabled", "success")
+      document.title = "TextUtils222 - Light Mode"
 
-  }
+    }
   }
   const [alert, setAlert] = useState(null);
-  const showAlert =(message,type)=>{
+  const showAlert = (message, type) => {
     setAlert({
       msg: message,
       type: type
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       setAlert(null);
-    },2000);
+    }, 2000);
   }
   return (
     <>
@@ -96,10 +102,20 @@ function App() {
     </div>
   </div>
 </nav> */}
-      <Navbar title="TextUtils222" aboutText="About Text-Utils" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert}/>
-      <div className="container my-3"><TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/></div>
-      {/* <About/> */}
+      <Router>
+        <Navbar title="TextUtils222" aboutText="About" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Switch>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route exact path="/">
+              <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 }
