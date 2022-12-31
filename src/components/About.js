@@ -1,32 +1,35 @@
-import React, { useState } from 'react'
-export default function About() {
+// import React, { useState } from 'react'
+export default function About(props) {
 
-    const [myStyle, setMyStyle] = useState({
-        color: 'black',
-        backgroundColor: 'white'
-    })
-    const [btnText, setBtnText] = useState('Enable dark mode')
-    const toggleStlye = () => {
-        if (myStyle.color === 'black') {
-            setMyStyle({
-                color: 'white',
-                backgroundColor: 'black'
-            })
-            setBtnText('Enable light mode')
-        }
-        else {
-            setMyStyle({
-                color: 'black',
-                backgroundColor: 'white'
-            })
-            setBtnText('Enable dark mode')
-        }
-    }
-
+    // const [myStyle, setMyStyle] = useState({
+    //     color: 'black',
+    //     backgroundColor: 'white'
+    // })
+    // const [btnText, setBtnText] = useState('Enable dark mode')
+    // const toggleStlye = () => {
+    //     if (myStyle.color === 'black') {
+    //         setMyStyle({
+    //             color: 'white',
+    //             backgroundColor: 'black'
+    //         })
+    //         setBtnText('Enable light mode')
+    //     }
+    //     else {
+    //         setMyStyle({
+    //             color: 'black',
+    //             backgroundColor: 'white'
+    //         })
+    //         setBtnText('Enable dark mode')
+    //     }
+    // }
+ let myStyle ={
+     color: props.mode==='dark'?'white':'black',
+     backgroundColor: props.mode==='dark'?'rgb(36 74 104)':'white'
+ }
     return (
         // const [btnText,setBtnText]=useState('Enable dark mode'); 
 
-        <div className='container my-4' style={myStyle}>
+        <div className='container my-4' style={ {color: props.mode==='dark'?'white':'black'}}>
             <h1 className='my-2'>About us</h1>
             <div className="accordion" id="accordionExample" >
                 <div className="accordion-item" style={myStyle}>
@@ -66,7 +69,7 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <button className="btn btn-primary my-1" onClick={toggleStlye}>{btnText}</button>
+            {/* <button className="btn btn-primary my-1" onClick={toggleStlye}>{btnText}</button> */}
         </div>
     )
 }
